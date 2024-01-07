@@ -1,0 +1,23 @@
+[package]
+name = "glfw-sys"
+links = "glfw"
+version = "0.1.0+3.3.9"
+authors = ["Andrei N. Onea <andrei@onea.ro>"]
+license = "Zlib"
+repository = "https://github.com/andreinonea/glfw-sys"
+description = "Low-level bindings to bundled glfw library (kept up-to-date to upstream releases)."
+categories = ["windowing", "input"]
+keywords = ["glfw"]
+edition = "2021"
+build = "build.rs"
+
+[lib]
+name = "glfw_sys"
+path = "lib.rs"
+
+[build-dependencies]
+bindgen = "*"
+cmake = "*"
+
+[features]
+wayland = []
