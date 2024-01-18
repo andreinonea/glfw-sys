@@ -1,7 +1,7 @@
 [package]
 name = "glfw-sys"
 links = "glfw"
-version = "0.2.0+3.3.9"
+version = "0.2.0+3.4.0"
 authors = ["Andrei N. Onea <andrei@onea.ro>"]
 license = "Zlib"
 repository = "https://github.com/andreinonea/glfw-sys"
