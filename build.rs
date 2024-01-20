@@ -1,7 +1,6 @@
 extern crate bindgen;
 extern crate cmake;
 
-use std::env;
 use std::path::PathBuf;
 
 fn main() {
@@ -57,9 +56,8 @@ fn main() {
         // Unwrap the Result and panic on failure.
         .expect("Unable to generate bindings");
 
-    // Write the bindings to the $OUT_DIR/bindings.rs file.
-    let out_path = PathBuf::from(env::var("OUT_DIR").unwrap()).join("ffi.rs");
+    // Write the bindings to the ffi.rs file.
     bindings
-        .write_to_file(out_path)
+        .write_to_file(PathBuf::from("ffi.rs"))
         .expect("Couldn't write bindings!");
 }

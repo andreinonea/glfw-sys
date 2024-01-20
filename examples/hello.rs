@@ -11,11 +11,11 @@ use glfw_sys::{
 unsafe extern "C" fn key_callback(
     window: *mut GLFWwindow,
     key: ::std::os::raw::c_int,
-    scancode: ::std::os::raw::c_int,
+    _scancode: ::std::os::raw::c_int,
     action: ::std::os::raw::c_int,
-    mods: ::std::os::raw::c_int,
+    _mods: ::std::os::raw::c_int,
 ) {
-    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
+    if key == GLFW_KEY_ESCAPE && action == GLFW_PRESS {
         glfwSetWindowShouldClose(window, GLFW_TRUE)
     }
 }
