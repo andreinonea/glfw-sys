@@ -45,6 +45,8 @@ fn main() {
         // Block system headers (e.g. stdint.h, stddef.h).
         .blocklist_file("/usr/include.*")
         .blocklist_file("/usr/lib/llvm.*?/lib/clang/.*?/include.*")
+        // Let all #define statement convert to i32 value, as expected by glfw.
+        .default_macro_constant_type(bindgen::MacroTypeVariation::Signed)
         // The input header we would like to generate bindings for.
         .header(headers_path_str)
         // Tell cargo to invalidate the built crate whenever
