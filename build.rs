@@ -1,7 +1,32 @@
 extern crate bindgen;
 extern crate cmake;
+extern crate doxygen_rs;
 
 use std::path::PathBuf;
+
+#[derive(Debug)]
+struct DoxygenCallbacks;
+
+impl bindgen::callbacks::ParseCallbacks for DoxygenCallbacks {
+    fn process_comment(&self, comment: &str) -> Option<String> {
+        // println!("{comment}");
+        println!(
+            "{}",
+            comment
+                .replace("@sa @ref", "@sa")
+                .replace("@ref", "@sa")
+                .replace("@sa\n", "@sa ")
+                .as_str()
+        );
+        Some(doxygen_rs::transform(
+            comment
+                .replace("@sa @ref", "@sa")
+                .replace("@ref", "@sa")
+                .replace("@sa\n", "@sa ")
+                .as_str(),
+        ))
+    }
+}
 
 fn main() {
     // Tell cargo to build submodule GLFW project.
@@ -51,6 +76,7 @@ fn main() {
         // Tell cargo to invalidate the built crate whenever
         // any of the included header files changed.
         .parse_callbacks(Box::new(bindgen::CargoCallbacks::new()))
+        .parse_callbacks(Box::new(DoxygenCallbacks {}))
         // Finish the builder and generate the bindings.
         .generate()
         // Unwrap the Result and panic on failure.

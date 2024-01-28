@@ -18,6 +18,10 @@ path = "lib.rs"
 [build-dependencies]
 bindgen = "*"
 cmake = "*"
+doxygen-rs = "*"
+
+[dependencies]
+doxygen-rs = "*"
 
 [features]
 wayland = []
